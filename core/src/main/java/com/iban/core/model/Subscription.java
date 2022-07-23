@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Data
@@ -23,7 +22,7 @@ public class Subscription {
     private String email;
 
     @NotNull
-    private Timestamp dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @NotNull
     private Boolean consent;
