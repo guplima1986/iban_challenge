@@ -1,10 +1,11 @@
 package com.iban.subscription.endpoint.service;
 
+import com.google.gson.Gson;
+import com.iban.core.model.Constants;
 import com.iban.core.model.Subscription;
-import com.iban.core.model.event.SubscriptionEvent;
 import com.iban.core.repository.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +15,11 @@ import java.util.List;
 public class SubscriptionService {
 
     private final SubscriptionRepository subscriptionRepository;
-    private final ApplicationEventPublisher publisher;
+    private final RabbitTemplate publisher;
 
     public Subscription createSubscription(Subscription subscription) {
         Subscription save = subscriptionRepository.save(subscription);
-        publisher.publishEvent(new SubscriptionEvent(save));
+        publisher.convertAndSend(Constants.QUEUE, new Gson().toJson(save));
         return save;
     }
 

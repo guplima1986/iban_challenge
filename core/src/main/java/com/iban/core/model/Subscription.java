@@ -2,16 +2,13 @@ package com.iban.core.model;
 
 import com.iban.core.model.enums.GenderEnum;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class Subscription {
 
@@ -26,7 +23,7 @@ public class Subscription {
     private String email;
 
     @NotNull
-    private LocalDate dateOfBirth;
+    private Timestamp dateOfBirth;
 
     @NotNull
     private Boolean consent;
