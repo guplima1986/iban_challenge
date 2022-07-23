@@ -19,7 +19,7 @@ public class SubscriptionController {
 
 
     @PostMapping
-    public ResponseEntity<String> createSubscription(@RequestBody Subscription subscription){
+    public ResponseEntity<Subscription> createSubscription(@RequestBody Subscription subscription){
         return ResponseEntity.ok(subscriptionService.createSubscription(subscription));
     }
 

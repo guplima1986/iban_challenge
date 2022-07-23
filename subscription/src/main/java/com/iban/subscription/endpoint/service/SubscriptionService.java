@@ -1,6 +1,7 @@
 package com.iban.subscription.endpoint.service;
 
 import com.iban.core.model.Subscription;
+import com.iban.core.model.event.SubscriptionEvent;
 import com.iban.core.repository.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -15,10 +16,10 @@ public class SubscriptionService {
     private final SubscriptionRepository subscriptionRepository;
     private final ApplicationEventPublisher publisher;
 
-    public String createSubscription(Subscription subscription) {
+    public Subscription createSubscription(Subscription subscription) {
         Subscription save = subscriptionRepository.save(subscription);
-        publisher.publishEvent(save);
-        return "Subscription successful";
+        publisher.publishEvent(new SubscriptionEvent(save));
+        return save;
     }
 
     public List<Subscription> getAll() {
