@@ -29,3 +29,5 @@ After running the project you will have the application running in **http://loca
 |           endpoint          	|                                 function                                 	|
 |:---------------------------:	|:----------------------------------------------------------------------:	|
 |            /subscription  	|           To create a subscription in the informed campaign              	|
+
+For the Swagger access the URL http://localhost:8080/swagger-ui/index.html
