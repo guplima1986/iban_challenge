@@ -7,12 +7,11 @@
 * [Endpoints available](https://github.com/guplima1986/iban_challenge#endpoints-available)
 
 ## Technologies used
-|          Tecnologies        |         Link            |
-|:---------------------------:|:-----------------------:|
-|          Springboot         | [https://spring.io/projects/spring-boot] |
-|          Rabbit             | [https://www.rabbitmq.com/] |
-|          Docker             | [https://www.docker.com/] |
-|          MySQL              | [https://www.mysql.com/] |
+
+[Springboot](https://spring.io/projects/spring-boot)
+[Rabbit](https://www.rabbitmq.com/)
+[Docker](https://docs.docker.com/get-docker/)
+[MySQL](https://www.mysql.com/)
 
 ## 🐳 Executando o projeto com Docker
 
