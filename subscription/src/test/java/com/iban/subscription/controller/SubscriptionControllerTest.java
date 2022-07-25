@@ -27,7 +27,7 @@ import org.springframework.http.ResponseEntity;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase
-public class SubscriptionControllerTest {
+class SubscriptionControllerTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
