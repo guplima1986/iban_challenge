@@ -1,4 +1,4 @@
-package com.iban.core.exception;
+package com.iban.subscription.exception;
 
 import lombok.Data;
 import lombok.experimental.SuperBuilder;

@@ -1,4 +1,4 @@
-package com.iban.core.exception;
+package com.iban.subscription.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

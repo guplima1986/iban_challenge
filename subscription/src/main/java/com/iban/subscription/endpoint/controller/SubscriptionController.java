@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("subscriptions")
@@ -20,7 +22,7 @@ public class SubscriptionController {
 
 
     @PostMapping
-    public ResponseEntity<SubscriptionRequestBody> createSubscription(@RequestBody SubscriptionRequestBody subscriptionRequestBody){
+    public ResponseEntity<SubscriptionRequestBody> createSubscription(@RequestBody @Valid SubscriptionRequestBody subscriptionRequestBody){
         Subscription subscription = SubscriptionMapper.INSTANCE.subscriptionRequestBodyToSubscription(subscriptionRequestBody);
         Subscription subscriptionSaved = subscriptionService.createSubscription(subscription);
         return new ResponseEntity<>(SubscriptionMapper.INSTANCE.subscriptionToSubscriptionRequestBody(subscriptionSaved), HttpStatus.CREATED);
