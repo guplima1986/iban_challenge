@@ -1,6 +1,8 @@
 package com.iban.subscription.endpoint.controller;
 
+import com.iban.core.mapper.SubscriptionMapper;
 import com.iban.core.model.Subscription;
+import com.iban.core.requests.SubscriptionRequestBody;
 import com.iban.subscription.endpoint.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +21,8 @@ public class SubscriptionController {
 
 
     @PostMapping
-    public ResponseEntity<Subscription> createSubscription(@RequestBody Subscription subscription){
+    public ResponseEntity<Subscription> createSubscription(@RequestBody SubscriptionRequestBody subscriptionRequestBody){
+        Subscription subscription = SubscriptionMapper.INSTANCE.subscriptionRequestBodyToSubscription(subscriptionRequestBody);
         return ResponseEntity.ok(subscriptionService.createSubscription(subscription));
     }
 

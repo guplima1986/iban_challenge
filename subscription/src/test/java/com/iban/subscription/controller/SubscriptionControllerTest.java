@@ -38,7 +38,7 @@ public class SubscriptionControllerTest {
     void save_returnSubscription_whenSuccessful() {
 
         Subscription subscription = subscriptionController
-                                    .createSubscription(SubscriptionCreator.createSubscriptionToBeSaved())
+                                    .createSubscription(SubscriptionCreator.createSubscriptionRequestBody())
                                     .getBody();
 
         Assertions.assertThat(subscription)
