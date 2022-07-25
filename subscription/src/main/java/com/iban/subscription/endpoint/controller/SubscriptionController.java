@@ -6,6 +6,7 @@ import com.iban.core.requests.SubscriptionRequestBody;
 import com.iban.subscription.endpoint.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,12 +24,7 @@ public class SubscriptionController {
     @PostMapping
     public ResponseEntity<Subscription> createSubscription(@RequestBody SubscriptionRequestBody subscriptionRequestBody){
         Subscription subscription = SubscriptionMapper.INSTANCE.subscriptionRequestBodyToSubscription(subscriptionRequestBody);
-        return ResponseEntity.ok(subscriptionService.createSubscription(subscription));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Subscription>> getAll(){
-        return ResponseEntity.ok(subscriptionService.getAll());
+        return new ResponseEntity<>(subscriptionService.createSubscription(subscription), HttpStatus.CREATED);
     }
 
 }

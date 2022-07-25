@@ -24,8 +24,4 @@ public class SubscriptionService {
         publisher.convertAndSend(Constants.QUEUE, subscriptionDto);
         return save;
     }
-
-    public List<Subscription> getAll() {
-        return subscriptionRepository.findAll();
-    }
 }
