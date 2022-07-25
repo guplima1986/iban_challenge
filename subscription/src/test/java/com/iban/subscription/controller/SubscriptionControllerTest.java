@@ -6,6 +6,7 @@ import com.iban.subscription.endpoint.service.SubscriptionService;
 import com.iban.subscription.util.SubscriptionCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
@@ -33,6 +34,7 @@ public class SubscriptionControllerTest {
 
 
     @Test
+    @DisplayName("Save and return subscription when Successful")
     void save_returnSubscription_whenSuccessful() {
 
         Subscription subscription = subscriptionController
