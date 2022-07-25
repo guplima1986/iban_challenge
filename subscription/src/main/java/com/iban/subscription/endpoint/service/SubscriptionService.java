@@ -1,6 +1,5 @@
 package com.iban.subscription.endpoint.service;
 
-import com.google.gson.Gson;
 import com.iban.core.model.Constants;
 import com.iban.core.model.Subscription;
 import com.iban.core.repository.SubscriptionRepository;
@@ -19,7 +18,7 @@ public class SubscriptionService {
 
     public Subscription createSubscription(Subscription subscription) {
         Subscription save = subscriptionRepository.save(subscription);
-        publisher.convertAndSend(Constants.QUEUE, new Gson().toJson(save));
+        publisher.convertAndSend(Constants.QUEUE, save);
         return save;
     }
 

@@ -18,9 +18,8 @@ public class SubscriptionConsumer {
     private final EmailService emailService;
 
     @RabbitListener(queues = Constants.QUEUE)
-    public void consumerMessageFromQueue(@Payload String event) {
-        Subscription subscription = new Gson().fromJson(event, Subscription.class);
-        createCampaignMessage(subscription);
+    public void consumerMessageFromQueue(@Payload Subscription event) {
+        createCampaignMessage(event);
     }
 
     private void createCampaignMessage(Subscription subscription){

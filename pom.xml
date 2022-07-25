@@ -20,6 +20,7 @@
 
     <modules>
         <module>subscription</module>
+        <module>notification</module>
         <module>core</module>
     </modules>
 
