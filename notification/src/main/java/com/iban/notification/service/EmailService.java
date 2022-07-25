@@ -32,11 +32,7 @@ public class EmailService {
         sendCampaignEmail(emailDetails);
     }
 
-    private void sendCampaignEmail(EmailDetails email) {
-        sendMail(email);
-    }
-
-    private void sendMail(EmailDetails details){
+    private void sendCampaignEmail(EmailDetails details){
 
         try {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
