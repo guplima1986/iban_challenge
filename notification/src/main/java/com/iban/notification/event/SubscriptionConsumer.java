@@ -1,9 +1,7 @@
 package com.iban.notification.event;
 
-import com.google.gson.Gson;
 import com.iban.core.model.Constants;
-import com.iban.core.model.Subscription;
-import com.iban.notification.domain.EmailDetails;
+import com.iban.core.model.dto.SubscriptionDto;
 import com.iban.notification.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -18,20 +16,8 @@ public class SubscriptionConsumer {
     private final EmailService emailService;
 
     @RabbitListener(queues = Constants.QUEUE)
-    public void consumerMessageFromQueue(@Payload Subscription event) {
-        createCampaignMessage(event);
+    public void consumerMessageFromQueue(@Payload SubscriptionDto event) {
+        emailService.createCampaignMessage(event);
     }
 
-    private void createCampaignMessage(Subscription subscription){
-        EmailDetails emailDetails = new EmailDetails()
-                .builder()
-                .recipient(subscription.getEmail())
-                .subject("Campaign Subject")
-                .messageBody("Campaign Message")
-                .build();
-        sendCampaignEmail(emailDetails);
-    }
-    private void sendCampaignEmail(EmailDetails email) {
-        emailService.sendMail(email);
-    }
 }

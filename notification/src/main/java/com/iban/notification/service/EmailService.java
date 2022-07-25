@@ -1,5 +1,6 @@
 package com.iban.notification.service;
 
+import com.iban.core.model.dto.SubscriptionDto;
 import com.iban.notification.domain.EmailDetails;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,21 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String sender;
 
-    public void sendMail(EmailDetails details){
+    public void createCampaignMessage(SubscriptionDto subscription){
+        EmailDetails emailDetails = EmailDetails
+                .builder()
+                .recipient(subscription.getEmail())
+                .subject("Campaign Subject")
+                .messageBody("Campaign Message")
+                .build();
+        sendCampaignEmail(emailDetails);
+    }
+
+    private void sendCampaignEmail(EmailDetails email) {
+        sendMail(email);
+    }
+
+    private void sendMail(EmailDetails details){
 
         try {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -35,7 +50,7 @@ public class EmailService {
             log.info(mailMessage.toString());
             log.info("Email Sent");
         } catch (MailException e) {
-            System.out.println(e.getMessage());
+            log.error("ERROR: Send Email", e);
         }
     }
 
