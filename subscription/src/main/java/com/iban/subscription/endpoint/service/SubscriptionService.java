@@ -7,7 +7,6 @@ import com.iban.core.model.dto.SubscriptionDto;
 import com.iban.core.repository.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -45,7 +45,6 @@ public class EmailService {
             mailMessage.setTo(details.getRecipient());
             mailMessage.setText(details.getMessageBody());
             mailMessage.setSubject(details.getSubject());
-            //javaMailSender.send(mailMessage);
             log.info("Send Email");
             log.info(mailMessage.toString());
             log.info("Email Sent");
