@@ -1,12 +1,56 @@
-version: '3'
+version: '3.9'
 services:
-  web:
-    build: .
-      context: ./dir
-      dockerfile: Dockerfile-alternate
-      args:
-        versao: 1
+
+  subscription:
+    build:
+      context: .
+      dockerfile: Dockerfile-subscription
     ports:
-      - "5000:5000"
-  redis:
-    image: redis
+      - "8080:8080"
+    command: dockerize -wait tcp://mariadb:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mariadb:3306/subscription
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+    depends_on:
+      - mariadb
+
+  notification:
+    build:
+      context: .
+      dockerfile: Dockerfile-notification
+    command: dockerize -wait tcp://rabbitmq:5672
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      SPRING_MAIL_USERNAME: user
+    depends_on:
+      - rabbitmq
+
+  mariadb:
+    image: mariadb:10.7
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_USER=teste
+      - MYSQL_DATABASE=subscription
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "secret string"
+      RABBITMQ_NODENAME: rabbit
+    volumes:
+      - ./:/etc/rabbitmq/definitions.json
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15671:15671"
+      - "15672:15672"
+      - "25672:25672"

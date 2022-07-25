@@ -45,12 +45,12 @@ class SubscriptionControllerTest {
 
         campaingRepository.save(new Campaign(1L, "Marketing"));
 
-        ResponseEntity<Subscription> subscriptionResponseEntity = testRestTemplate.postForEntity("/subscriptions", subscriptionRequestBody, Subscription.class);
+        ResponseEntity<SubscriptionRequestBody> subscriptionResponseEntity = testRestTemplate.postForEntity("/subscriptions", subscriptionRequestBody, SubscriptionRequestBody.class);
 
         Assertions.assertThat(subscriptionResponseEntity).isNotNull();
         Assertions.assertThat(subscriptionResponseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         Assertions.assertThat(subscriptionResponseEntity.getBody()).isNotNull();
-        Assertions.assertThat(subscriptionResponseEntity.getBody().getId()).isNotNull();
+        Assertions.assertThat(subscriptionResponseEntity.getBody().getCampaign()).isNotNull();
 
     }
 

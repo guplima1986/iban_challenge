@@ -20,4 +20,7 @@ public interface SubscriptionMapper {
 
     @Mapping(source = "campaign", target = "campaign.id")
     Subscription subscriptionRequestBodyToSubscription(SubscriptionRequestBody subscriptionRequestBody);
+
+    @Mapping(source = "campaign.id", target = "campaign")
+    SubscriptionRequestBody subscriptionToSubscriptionRequestBody(Subscription subscription);
 }

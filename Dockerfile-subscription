@@ -1,0 +1,11 @@
+FROM maven:3.8.1-openjdk-11 AS build
+
+COPY subscription /subscription
+COPY core /core
+COPY notification /notification
+COPY pom.xml pom.xml
+RUN mvn clean package
+
+FROM openjdk:11
+COPY --from=build /subscription/target/*.jar subscription.jar
+ENTRYPOINT ["java", "-jar", "/subscription.jar"]

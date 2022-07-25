@@ -20,9 +20,10 @@ public class SubscriptionController {
 
 
     @PostMapping
-    public ResponseEntity<Subscription> createSubscription(@RequestBody SubscriptionRequestBody subscriptionRequestBody){
+    public ResponseEntity<SubscriptionRequestBody> createSubscription(@RequestBody SubscriptionRequestBody subscriptionRequestBody){
         Subscription subscription = SubscriptionMapper.INSTANCE.subscriptionRequestBodyToSubscription(subscriptionRequestBody);
-        return new ResponseEntity<>(subscriptionService.createSubscription(subscription), HttpStatus.CREATED);
+        Subscription subscriptionSaved = subscriptionService.createSubscription(subscription);
+        return new ResponseEntity<>(SubscriptionMapper.INSTANCE.subscriptionToSubscriptionRequestBody(subscriptionSaved), HttpStatus.CREATED);
     }
 
 }
