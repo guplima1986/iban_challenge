@@ -47,25 +47,7 @@
   ],
   "queues":[
     {
-      "name":"subscriptions",
-      "vhost":"/",
-      "durable":true,
-      "auto_delete":false,
-      "arguments":{
-        "x-queue-type":"classic"
-      }
-    },
-    {
       "name":"rabbit_queue",
-      "vhost":"/",
-      "durable":true,
-      "auto_delete":false,
-      "arguments":{
-        "x-queue-type":"classic"
-      }
-    },
-    {
-      "name":"teste",
       "vhost":"/",
       "durable":true,
       "auto_delete":false,
