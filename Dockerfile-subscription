@@ -4,7 +4,7 @@ COPY subscription /subscription
 COPY core /core
 COPY notification /notification
 COPY pom.xml pom.xml
-RUN mvn clean package
+RUN mvn clean package -DskipTests=true
 
 FROM openjdk:11
 COPY --from=build /subscription/target/*.jar subscription.jar

@@ -12,9 +12,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mariadb:3306/subscription
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
     depends_on:
       - mariadb
+      - flyway
+      - rabbitmq
 
   notification:
     build:
@@ -55,3 +57,11 @@ services:
       - "15671:15671"
       - "15672:15672"
       - "25672:25672"
+
+  flyway:
+    image: flyway/flyway:6.4.1-alpine
+    command: -url=jdbc:mysql://mariadb:3306/subscription -schema=subscription -user=teste -password=root -connectRetries=30 migrate
+    volumes:
+      - ./flyway:/flyway/sql
+    depends_on:
+      - mariadb
