@@ -13,9 +13,9 @@
 * [Docker](https://docs.docker.com/get-docker/)
 * [MySQL](https://www.mysql.com/)
 
-## 🐳 Executando o projeto com Docker
+## 🐳 Running the project with Docker
 
-* Requisito: [Docker](https://docs.docker.com/get-docker/)
+* Requirement: [Docker](https://docs.docker.com/get-docker/)
 
 Run Docker, open the terminal '.../iban_challenge' and execute the command:
 
